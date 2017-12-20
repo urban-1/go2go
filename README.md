@@ -4,7 +4,7 @@ Yet Another Go Virutal Environment Manager...
 
 ## What?
 
-- Manages Go virtual environemnts
+- Manages Go virtual environments
 - Installs Go and Glide when needed
 
 [![asciicast](https://asciinema.org/a/QqQKrMNXBSzXEGoB0eaJ87jWS.png)](https://asciinema.org/a/QqQKrMNXBSzXEGoB0eaJ87jWS)
