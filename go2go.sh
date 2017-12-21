@@ -4,7 +4,7 @@
 # Minimalistic script to handle Go environments - Meant to be used along with
 # glide (curl https://glide.sh/get | sh)
 #
-DN=$(realpath $(dirname $0))
+DN=$(readlink -f $(dirname $0))
 
 # Load Config
 if [ -f ~/.go2go.rc ]; then
