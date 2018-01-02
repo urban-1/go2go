@@ -1,6 +1,6 @@
 # Go2Go
 
-Yet Another Go Virutal Environment Manager...
+Yet Another Go Virtual Environment Manager...
 
 ## What?
 
@@ -54,6 +54,12 @@ g2g lsenvs
 g2g lsvers
 exit
 
+```
+
+### MAC users
+
+```
+. /dev/stdin <<< "$(./go2go.sh activate go-dev)"
 ```
 
 

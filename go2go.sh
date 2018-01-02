@@ -4,7 +4,12 @@
 # Minimalistic script to handle Go environments - Meant to be used along with
 # glide (curl https://glide.sh/get | sh)
 #
-DN=$(readlink -f $(dirname $0))
+if [ "$(uname -s)" = 'Linux' ]; then
+    DN=$(readlink -f $(dirname $0))
+else
+    DN=$(dirname $0)
+fi
+
 
 # Load Config
 if [ -f ~/.go2go.rc ]; then
@@ -43,7 +48,7 @@ function help {
 function lsvers_go {
     echo
     echo " * Available Go versions:"
-    ls $GO_INSTALL_PATH | sort -V | sed 's|^|   - |g'
+    ls $GO_INSTALL_PATH | sort | sed 's|^|   - |g'
     echo
 }
 
@@ -224,7 +229,11 @@ function env_go {
     echo "$name:$version:$go_home:$path" >> ~/.go2go.db
 
     echo " * Activating new environment"
-    . <($0 activate "$name" 2>/dev/null)
+    if [ "$(uname -s)" = 'Linux' ]; then
+        . <($0 activate "$name" 2>/dev/null)
+    else
+        . /dev/stdin <<< "$($0 activate $name)"
+    fi
 
     echo " * Installing glide for you!"
     if [ "`which glide`" == "" ]; then
@@ -257,7 +266,7 @@ function rmenv_go {
     _print_env_config "$name"
 
 
-    sed -i "/^$name:/d" ~/.go2go.db
+    sed -i '' "/^$name:/d" ~/.go2go.db
     echo
     echo " * Removed configuration. NOTE any srcs and pkgs should still exist in:"
     echo
