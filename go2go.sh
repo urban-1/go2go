@@ -224,6 +224,11 @@ function env_go {
             echo "Something went wrong... cannot create '$path'?? Permissions??"
             exit 32
         fi
+        
+        # These seem to be needed for glide... but they are not always created...
+        mkdir -p "$path/bin"
+        mkdir -p "$path/pkg"
+        mkdir -p "$path/src"
     fi
 
     echo "$name:$version:$go_home:$path" >> ~/.go2go.db
