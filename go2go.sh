@@ -4,10 +4,13 @@
 # Minimalistic script to handle Go environments - Meant to be used along with
 # glide (curl https://glide.sh/get | sh)
 #
+
 if [ "$(uname -s)" = 'Linux' ]; then
     DN=$(readlink -f $(dirname $0))
+    SED_I="sed -i"
 else
     DN=$(dirname $0)
+    SED_I="sed -i ''"
 fi
 
 
@@ -224,7 +227,7 @@ function env_go {
             echo "Something went wrong... cannot create '$path'?? Permissions??"
             exit 32
         fi
-        
+
         # These seem to be needed for glide... but they are not always created...
         mkdir -p "$path/bin"
         mkdir -p "$path/pkg"
@@ -270,8 +273,7 @@ function rmenv_go {
     echo " * Removing Environment:"
     _print_env_config "$name"
 
-
-    sed -i '' "/^$name:/d" ~/.go2go.db
+    $SED_I "/^$name:/d" ~/.go2go.db
     echo
     echo " * Removed configuration. NOTE any srcs and pkgs should still exist in:"
     echo

@@ -59,6 +59,10 @@ exit
 ### MAC users
 
 ```
+eval "$(./go2go.sh activate go-dev)"
+
+# OR
+
 . /dev/stdin <<< "$(./go2go.sh activate go-dev)"
 ```
 
