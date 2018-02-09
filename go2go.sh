@@ -15,12 +15,12 @@ fi
 if [ -f ~/.go2go.rc ]; then
     . ~/.go2go.rc
 else
-    echo ""
-    echo "Edit ~/.go2go.rc if you want to customize, defaults are being used:"
-    echo ""
-    echo "  GO_INSTALL_PATH=~/.go2go/versions"
-    echo "  GO_ENVIRON_PATH=~/go"
-    echo ""
+    >&2 echo ""
+    >&2 echo "Edit ~/.go2go.rc if you want to customize, defaults are being used:"
+    >&2 echo ""
+    >&2 echo "  GO_INSTALL_PATH=~/.go2go/versions"
+    >&2 echo "  GO_ENVIRON_PATH=~/go"
+    >&2 echo ""
 fi
 
 
@@ -224,7 +224,7 @@ function env_go {
             echo "Something went wrong... cannot create '$path'?? Permissions??"
             exit 32
         fi
-        
+
         # These seem to be needed for glide... but they are not always created...
         mkdir -p "$path/bin"
         mkdir -p "$path/pkg"
